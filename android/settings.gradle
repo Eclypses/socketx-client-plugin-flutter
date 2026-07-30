@@ -1,0 +1,11 @@
+rootProject.name = 'socketx_client'
+
+// Dev-only composite: build against the checked-out sibling lib when present;
+// otherwise the declared com.eclypses:* artifact resolves from Maven Central.
+if (file('../../../Packages/socketx-client-android').exists()) {
+    includeBuild('../../../Packages/socketx-client-android') {
+        dependencySubstitution {
+            substitute module('com.eclypses:mte-socketx-client-android') using project(':socketx-client-android')
+        }
+    }
+}

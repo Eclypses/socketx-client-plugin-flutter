@@ -1,0 +1,47 @@
+group = "com.eclypses.socketx_client"
+version = "1.0.0"
+
+buildscript {
+    ext.kotlin_version = '2.1.0'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.13.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+
+android {
+    namespace = "com.eclypses.socketx_client"
+    compileSdk = 36
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+
+    dependencies {
+        // SocketX Client Android library (Maven Central; dev builds substitute the sibling via settings.gradle)
+        implementation 'com.eclypses:mte-socketx-client-android:2.0.0'
+        // okhttp is declared implementation (not api) in mte-socketx-client-android, so the plugin must declare it directly
+        implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    }
+
+}
